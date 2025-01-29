@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Mouse="*res://scripts/mouse.gd"
+Mouse="*res://scripts/singletons/mouse.gd"
+Global="*res://scripts/singletons/global.gd"
 
 [display]
 

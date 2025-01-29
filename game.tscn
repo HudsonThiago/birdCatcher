@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://o56no8tnh4wu"]
+[gd_scene load_steps=12 format=3 uid="uid://o56no8tnh4wu"]
 
-[ext_resource type="Script" path="res://scripts/mouse.gd" id="1_2o674"]
+[ext_resource type="Script" path="res://scripts/singletons/mouse.gd" id="1_2o674"]
 [ext_resource type="Texture2D" uid="uid://dnkbdt4fwxoos" path="res://sprites/background.png" id="1_8yu1l"]
 [ext_resource type="Texture2D" uid="uid://cam4nu1atinqh" path="res://sprites/sprites.png" id="2_0vy62"]
+[ext_resource type="Texture2D" uid="uid://ccxsjtciibh4" path="res://sprites/points.png" id="4_4lyve"]
+[ext_resource type="Script" path="res://hudManager.gd" id="4_5wjm4"]
+[ext_resource type="Texture2D" uid="uid://c0dj57pt2c8eb" path="res://sprites/bulletIcon.png" id="4_vpmdh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55gsf"]
 
@@ -80,7 +83,7 @@ position = Vector2(640, 360)
 scale = Vector2(4, 4)
 texture = ExtResource("1_8yu1l")
 
-[node name="Drone" type="Sprite2D" parent="."]
+[node name="drone" type="Sprite2D" parent="."]
 position = Vector2(-400, 200)
 scale = Vector2(4, 4)
 texture = ExtResource("2_0vy62")
@@ -88,14 +91,14 @@ hframes = 4
 vframes = 4
 frame = 2
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Drone"]
+[node name="RigidBody2D" type="RigidBody2D" parent="drone"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Drone/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drone/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
 
-[node name="ImproveDrone" type="Sprite2D" parent="."]
+[node name="improveDrone" type="Sprite2D" parent="."]
 position = Vector2(-200, 200)
 scale = Vector2(4, 4)
 texture = ExtResource("2_0vy62")
@@ -103,14 +106,14 @@ hframes = 4
 vframes = 4
 frame = 3
 
-[node name="RigidBody2D" type="RigidBody2D" parent="ImproveDrone"]
+[node name="RigidBody2D" type="RigidBody2D" parent="improveDrone"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ImproveDrone/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="improveDrone/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
 
-[node name="BlueBird" type="Sprite2D" parent="."]
+[node name="blueBird" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-400, 400)
 scale = Vector2(4, 4)
@@ -119,19 +122,19 @@ hframes = 4
 vframes = 4
 frame = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BlueBird"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="blueBird"]
 libraries = {
 "": SubResource("AnimationLibrary_yicxj")
 }
 
-[node name="RigidBody2D" type="RigidBody2D" parent="BlueBird"]
+[node name="RigidBody2D" type="RigidBody2D" parent="blueBird"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BlueBird/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blueBird/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
 
-[node name="GreenBird" type="Sprite2D" parent="."]
+[node name="greenBird" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-400, 600)
 scale = Vector2(4, 4)
@@ -140,14 +143,14 @@ hframes = 4
 vframes = 4
 frame = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GreenBird"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="greenBird"]
 libraries = {
 "": SubResource("AnimationLibrary_yicxj")
 }
 
-[node name="RigidBody2D" type="RigidBody2D" parent="GreenBird"]
+[node name="RigidBody2D" type="RigidBody2D" parent="greenBird"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenBird/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="greenBird/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
@@ -160,3 +163,107 @@ hframes = 4
 vframes = 4
 frame = 5
 script = ExtResource("1_2o674")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="bontrol" type="Control" parent="Hud"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_5wjm4")
+
+[node name="timerContainer" type="MarginContainer" parent="Hud/bontrol"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_right = 134.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/bontrol/timerContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="timerLabel" type="Label" parent="Hud/bontrol/timerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Temporizador"
+
+[node name="timerCounter" type="Label" parent="Hud/bontrol/timerContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "02:00"
+
+[node name="container" type="MarginContainer" parent="Hud/bontrol"]
+layout_mode = 0
+offset_right = 308.0
+offset_bottom = 111.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+
+[node name="scoreContainer" type="HBoxContainer" parent="Hud/bontrol/container"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="bulletImage" type="TextureRect" parent="Hud/bontrol/container/scoreContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_4lyve")
+
+[node name="scoreLabel" type="Label" parent="Hud/bontrol/container/scoreContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Pontos:"
+
+[node name="scoreCounter" type="Label" parent="Hud/bontrol/container/scoreContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0000
+"
+
+[node name="bulletContainer" type="HBoxContainer" parent="Hud/bontrol/container"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="bulletImage" type="TextureRect" parent="Hud/bontrol/container/bulletContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_vpmdh")
+
+[node name="bulletLabel" type="Label" parent="Hud/bontrol/container/bulletContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Balas:"
+
+[node name="bulletCounter" type="Label" parent="Hud/bontrol/container/bulletContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "0x"
