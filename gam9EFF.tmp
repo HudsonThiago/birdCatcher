@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://o56no8tnh4wu"]
 
+[ext_resource type="Script" path="res://scripts/singletons/mouse.gd" id="1_2o674"]
 [ext_resource type="Texture2D" uid="uid://dnkbdt4fwxoos" path="res://sprites/background.png" id="1_8yu1l"]
-[ext_resource type="Texture2D" uid="uid://dpjm5tj6bjsc0" path="res://sprites/sprites.png" id="2_0vy62"]
 [ext_resource type="Texture2D" uid="uid://ccxsjtciibh4" path="res://sprites/points.png" id="4_4lyve"]
 [ext_resource type="Script" path="res://hudManager.gd" id="4_5wjm4"]
 [ext_resource type="Texture2D" uid="uid://c0dj57pt2c8eb" path="res://sprites/bulletIcon.png" id="4_vpmdh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_55gsf"]
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_67o5h"]
 load_path = "res://.godot/imported/sprites.png-6400cb1186e3521f833030ecfd34f068.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55gsf"]
 
 [sub_resource type="Animation" id="Animation_jjr6j"]
 length = 0.4
@@ -55,7 +55,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_2auob"]
-resource_name = "purpleBirdFly"
+resource_name = "greenBirdFly"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -74,65 +74,48 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_jjr6j"),
 "blueBirdFly": SubResource("Animation_qxpnf"),
-"purpleBirdFly": SubResource("Animation_2auob")
+"greenBirdFly": SubResource("Animation_2auob")
 }
 
 [node name="Game" type="Node2D"]
 
-[node name="Sprites" type="Node2D" parent="."]
-
-[node name="Background" type="Sprite2D" parent="Sprites"]
+[node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
 texture = ExtResource("1_8yu1l")
 
-[node name="redDrone" type="Sprite2D" parent="Sprites"]
-position = Vector2(-600, 200)
-scale = Vector2(4, 4)
-texture = ExtResource("2_0vy62")
-hframes = 4
-vframes = 4
-frame = 3
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprites/redDrone"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/redDrone/RigidBody2D"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("CircleShape2D_55gsf")
-one_way_collision_margin = 0.0
-
-[node name="blueDrone" type="Sprite2D" parent="Sprites"]
+[node name="drone" type="Sprite2D" parent="."]
 position = Vector2(-400, 200)
 scale = Vector2(4, 4)
-texture = ExtResource("2_0vy62")
-hframes = 4
-vframes = 4
-frame = 10
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprites/blueDrone"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/blueDrone/RigidBody2D"]
-scale = Vector2(1.5, 1.5)
-shape = SubResource("CircleShape2D_55gsf")
-one_way_collision_margin = 0.0
-
-[node name="yellowDrone" type="Sprite2D" parent="Sprites"]
-position = Vector2(-200, 200)
-scale = Vector2(4, 4)
-texture = ExtResource("2_0vy62")
+texture = SubResource("CompressedTexture2D_67o5h")
 hframes = 4
 vframes = 4
 frame = 2
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprites/yellowDrone"]
+[node name="RigidBody2D" type="RigidBody2D" parent="drone"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/yellowDrone/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drone/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
 
-[node name="blueBird" type="Sprite2D" parent="Sprites"]
+[node name="improveDrone" type="Sprite2D" parent="."]
+position = Vector2(-200, 200)
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_67o5h")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="RigidBody2D" type="RigidBody2D" parent="improveDrone"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="improveDrone/RigidBody2D"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_55gsf")
+one_way_collision_margin = 0.0
+
+[node name="blueBird" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-400, 400)
 scale = Vector2(4, 4)
@@ -141,42 +124,51 @@ hframes = 4
 vframes = 4
 frame = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/blueBird"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="blueBird"]
 libraries = {
 "": SubResource("AnimationLibrary_yicxj")
 }
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprites/blueBird"]
+[node name="RigidBody2D" type="RigidBody2D" parent="blueBird"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/blueBird/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blueBird/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
 
-[node name="purpleBird" type="Sprite2D" parent="Sprites"]
+[node name="greenBird" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-400, 600)
 scale = Vector2(4, 4)
-texture = ExtResource("2_0vy62")
+texture = SubResource("CompressedTexture2D_67o5h")
 hframes = 4
 vframes = 4
 frame = 8
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites/purpleBird"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="greenBird"]
 libraries = {
 "": SubResource("AnimationLibrary_yicxj")
 }
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprites/purpleBird"]
+[node name="RigidBody2D" type="RigidBody2D" parent="greenBird"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/purpleBird/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="greenBird/RigidBody2D"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Sprites" type="Sprite2D" parent="."]
+position = Vector2(-210, 399)
+scale = Vector2(4, 4)
+texture = SubResource("CompressedTexture2D_67o5h")
+hframes = 4
+vframes = 4
+frame = 5
+script = ExtResource("1_2o674")
 
-[node name="control" type="Control" parent="UI"]
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="control" type="Control" parent="Hud"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,7 +177,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_5wjm4")
 
-[node name="timerContainer" type="MarginContainer" parent="UI/control"]
+[node name="timerContainer" type="MarginContainer" parent="Hud/control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -197,11 +189,11 @@ grow_horizontal = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/control/timerContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/control/timerContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="timerLabel" type="Label" parent="UI/control/timerContainer/VBoxContainer"]
+[node name="timerLabel" type="Label" parent="Hud/control/timerContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -209,7 +201,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "Temporizador"
 
-[node name="timerCounter" type="Label" parent="UI/control/timerContainer/VBoxContainer"]
+[node name="timerCounter" type="Label" parent="Hud/control/timerContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -217,34 +209,34 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "02:00"
 
-[node name="container" type="MarginContainer" parent="UI/control"]
+[node name="container" type="MarginContainer" parent="Hud/control"]
 layout_mode = 0
 offset_right = 308.0
 offset_bottom = 111.0
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 
-[node name="scoreContainer" type="HBoxContainer" parent="UI/control/container"]
+[node name="scoreContainer" type="HBoxContainer" parent="Hud/control/container"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="bulletImage" type="TextureRect" parent="UI/control/container/scoreContainer"]
+[node name="bulletImage" type="TextureRect" parent="Hud/control/container/scoreContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("4_4lyve")
 
-[node name="scoreLabel" type="Label" parent="UI/control/container/scoreContainer"]
+[node name="scoreLabel" type="Label" parent="Hud/control/container/scoreContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "Pontos:"
 
-[node name="scoreCounter" type="Label" parent="UI/control/container/scoreContainer"]
+[node name="scoreCounter" type="Label" parent="Hud/control/container/scoreContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -252,33 +244,33 @@ theme_override_font_sizes/font_size = 20
 text = "0000
 "
 
-[node name="bulletContainer" type="HBoxContainer" parent="UI/control/container"]
+[node name="bulletContainer" type="HBoxContainer" parent="Hud/control/container"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 10
 
-[node name="bulletImage" type="TextureRect" parent="UI/control/container/bulletContainer"]
+[node name="bulletImage" type="TextureRect" parent="Hud/control/container/bulletContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource("4_vpmdh")
 
-[node name="bulletLabel" type="Label" parent="UI/control/container/bulletContainer"]
+[node name="bulletLabel" type="Label" parent="Hud/control/container/bulletContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "Balas:"
 
-[node name="bulletCounter" type="Label" parent="UI/control/container/bulletContainer"]
+[node name="bulletCounter" type="Label" parent="Hud/control/container/bulletContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "0x"
 
-[node name="Timer" type="Timer" parent="UI/control"]
+[node name="Timer" type="Timer" parent="Hud/control"]
 autostart = true
 
-[connection signal="timeout" from="UI/control/Timer" to="UI/control" method="_on_timer_timeout"]
+[connection signal="timeout" from="Hud/control/Timer" to="Hud/control" method="_on_timer_timeout"]
