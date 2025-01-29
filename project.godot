@@ -11,5 +11,19 @@ config_version=5
 [application]
 
 config/name="birdCatcher"
+run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
