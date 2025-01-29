@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://o56no8tnh4wu"]
+[gd_scene load_steps=9 format=3 uid="uid://o56no8tnh4wu"]
 
+[ext_resource type="Script" path="res://scripts/mouse.gd" id="1_2o674"]
 [ext_resource type="Texture2D" uid="uid://dnkbdt4fwxoos" path="res://sprites/background.png" id="1_8yu1l"]
 [ext_resource type="Texture2D" uid="uid://cam4nu1atinqh" path="res://sprites/sprites.png" id="2_0vy62"]
 
@@ -150,3 +151,12 @@ libraries = {
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_55gsf")
 one_way_collision_margin = 0.0
+
+[node name="Sprites" type="Sprite2D" parent="."]
+position = Vector2(-210, 399)
+scale = Vector2(4, 4)
+texture = ExtResource("2_0vy62")
+hframes = 4
+vframes = 4
+frame = 5
+script = ExtResource("1_2o674")
