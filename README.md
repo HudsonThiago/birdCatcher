@@ -6,13 +6,13 @@ Este é o repositório do nosso projeto final, onde exploramos a criação e o b
 
 ## 🚀 Execução
 
-O executável do jogo pode ser encontrado na pasta `BUILD`. Para rodá-lo, basta acessar o diretório e executar o arquivo correspondente ao seu sistema operacional.
+O executável do jogo pode ser encontrado na pasta `BUILD`. Para rodá-lo, basta acessar o diretório e executar o arquivo em sistema operacional windows x64/x86.
 
 ---
 
 ## 🛠️ Componentes
 
-O time por trás deste projeto é formado pelos seguintes membros:
+O projeto foi realizado pelos seguintes membros:
 
 - **Álvaro Soares dos Santos**
 - **Diniz Rodrigues da Silva Junior**
