@@ -10,25 +10,55 @@ config_version=5
 
 [application]
 
-config/name="birdCatcher"
-run/main_scene="res://game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/name="Bird Catcher"
+config/version="1.0.0"
+run/main_scene="res://scenes/main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Duck_Hunt_Remastered"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/macos_native_icon="res://assets/gfx/duck_hunt_remastered_icon.icns"
+config/windows_native_icon="res://assets/gfx/duck_hunt_remastered_icon.ico"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
-Mouse="*res://scripts/singletons/mouse.gd"
-Global="*res://scripts/singletons/global.gd"
+CursorManager="*res://scenes/cursor_manager.tscn"
+SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=256
+window/size/viewport_height=240
+window/size/window_width_override=2048
+window/size/window_height_override=1920
+window/stretch/mode="canvas_items"
 
-[editor_plugins]
+[editor]
 
-enabled=PackedStringArray()
+movie_writer/mjpeg_quality=0.9
+movie_writer/movie_file="./game_video_footage/duck_hunt_remastered_demo.avi"
+
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
+[gui]
+
+theme/custom_font="res://assets/fonts/PixelOperator8-Bold.ttf"
+theme/default_font_antialiasing=0
+
+[input]
+
+left_click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(411, 34),"global_position":Vector2(421, 140),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
